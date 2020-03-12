@@ -1,13 +1,19 @@
 const express = require('express');
-const morgan =require('morgan') //enable logger middleware
-const helmet =require('helmet')
 
+const helmet =require('helmet')
+const usersRouter = require('./users/userRouter')
+const postsRouter = require('./posts/postRouter')
 
 const server = express();
 
 
-server.use(morgan('short'));
+server.use(helmet());
+server.use(logger); //don't need to invoke
+server.use(express.json());
 
+//after going through middleware, goes to routers
+server.use('/api/users', usersRouter);
+server.use('/api/posts', postsRouter);
 
 
 server.get('/', (req, res) => {
