@@ -1,6 +1,6 @@
 const express = require('express');
 
-const Posts = require('./postDb.js') ///research what this does
+const Posts = require('./postDb.js') 
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -10,6 +10,13 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   // do your magic!
+  Posts.get(req.query)
+        .then(post => {
+            res.status(200).json(post);
+        })
+        .catch(err => {
+            console.log(`Error: ${err}`);
+        });
 });
 
 router.delete('/:id', (req, res) => {

@@ -13,7 +13,7 @@ server.use(express.json());// built in middleware: no need to install
 
 //after going through middleware, goes to routers
 server.use('/api/users', usersRouter);
-// server.use('/api/posts', postsRouter);
+server.use('/api/posts', postsRouter);
 
 //route handler
 server.get('/',logger, (req, res) => {
