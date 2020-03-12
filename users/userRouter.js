@@ -61,8 +61,16 @@ router.get('/:id/posts', validateUserId, (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validateUserId, (req, res) => {
   // do your magic!
+  const { id } = req.params;
+  Users.remove(id)
+  .then(user => {
+    res.status(200).json(user);
+  })
+  .catch(err => {
+    console.log(`Error: ${err}`);
+  });
 });
 
 router.put('/:id', (req, res) => {
