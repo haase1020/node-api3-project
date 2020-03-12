@@ -38,9 +38,9 @@ router.get('/',validateUserId, (req, res) => {
   });
 });
 
-router.get('/:id/posts', validateUserId, (req, res) => {
+router.get('/:id', validateUserId, (req, res) => {
   const { id } = req.params;
-  Users.getUserPosts(id)
+  Users.getById(id)
       .then(user => {
           res.status(200).json(user);
       })
@@ -49,8 +49,16 @@ router.get('/:id/posts', validateUserId, (req, res) => {
       });
 });
 
-router.get('/:id/posts', (req, res) => {
+router.get('/:id/posts', validateUserId, (req, res) => {
   // do your magic!
+  const { id } =req.params;
+  Users.getUserPosts(id)
+  .then(user => {
+    res.status(200).json(user);
+  })
+  .catch(err => {
+    console.log(`Error: ${err}`);
+  });
 });
 
 router.delete('/:id', (req, res) => {
