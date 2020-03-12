@@ -1,10 +1,11 @@
 const express = require('express');
-
+const cors = require('cors')
 const helmet =require('helmet')
 const usersRouter = require('./users/userRouter')
 const postsRouter = require('./posts/postRouter')
 
 const server = express();
+server.use(cors())
 
 //global middleware
 server.use(helmet());

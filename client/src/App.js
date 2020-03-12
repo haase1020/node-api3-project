@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import axios from 'axios';
 import './App.css';
 
-function App() {
+import UsersForm from './components/UsersForm';
+import UsersDisplay from './components/UsersDisplay';
+
+const App = ()=> {
+
+  const [users, setUsers] = useState([])
+
+  const getUsers =()=> {
+    console.log("this thing is working")
+    axios 
+    .get('http://localhost:5000/api/users')
+    .then(res => {
+      console.log('response from axios', res.data);
+      setUsers(res.data);
+    })
+    .catch(err => {
+      console.log(`${err}`)
+    });
+
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h3>Users API</h3>
+      <UsersForm getUsersBtn={getUsers} />
+      <UsersDisplay usersDisplay={users} />
     </div>
   );
 }
