@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const postRouter = require('../posts/postRouter');
+const postRouter = require('../posts/postRouter');//is this the problem?
 const Users = require('./userDb');
 const Posts = require('../posts/postDb');
 
@@ -27,7 +27,7 @@ Posts.insert(body)
 });
 });
 
-router.get('/',validateUserId, (req, res) => {
+router.get('/',(req, res) => {
   // do your magic!
   Users.get(req.query)
   .then(user => {
