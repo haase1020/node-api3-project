@@ -24,7 +24,7 @@ Follow these steps for completing your project.
 - [ ] Your `Team Lead` will count the project as complete by merging the branch back into master.
 - [ ] Do your magic!
 
-## Minimum Viable Product
+## Minimum Viable Product March 11, 2020
 
 1. Write and implement four custom `middleware` functions, detailed below.
 1. Build an API to let clients perform CRUD operations on `users`.
